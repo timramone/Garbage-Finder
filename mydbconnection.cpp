@@ -62,6 +62,8 @@ UINT MyDBConnection::myDBAuthorize(char* _szTrashLogin, char* _szTrashPassword)
 	mysqlpp::Query myAuthQuery(&myDBConnection);
 	try
 	{
+		// какой кошмар, тут еще используется аутентификация по полному паролю без хеша. это ужасно =(
+		// но я точно помню, что на клиенте с телефона уже было не так. видимо это старая версия протокола :DD
 		myAuthQuery<<"SELECT id FROM users WHERE login="<<mysqlpp::quote_only
 			<<_szTrashLogin<<"AND password="<<mysqlpp::quote_only<<_szTrashPassword;
 
